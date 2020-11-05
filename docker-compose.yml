@@ -1,0 +1,12 @@
+version: '3'
+services:
+  oracle18xe:
+    build: .
+    image: zloybreg/oracle-database:18.4.0-xe
+    container_name: oracle18xe
+    volumes:
+      - C:\Users\dimag\oracle18xe:/opt/oracle/oradata # привязываем локальную папку для хранения данных оракл
+    ports:
+      - 1521:1521 # порт для БД
+    environment: 
+      - ORACLE_PWD=Admin123 #пароль для БД
