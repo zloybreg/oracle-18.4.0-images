@@ -70,6 +70,10 @@ RUN chmod ug+x $INSTALL_DIR/*.sh && \
     rm -rf $INSTALL_DIR && \
     chmod ug+x $ORACLE_BASE/*.sh
 
+# при подключении через sqlplus выдаеь ошибку ORA-12547: TNS:lost contact
+# для исправления надо выдать привилегии для файла oracle
+RUN cd $ORACLE_HOME/bin && chmod 6751 oracle
+
 HEALTHCHECK --interval=1m --start-period=5m \
    CMD "$ORACLE_BASE/$CHECK_DB_FILE" >/dev/null || exit 1
 
